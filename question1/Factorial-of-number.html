@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factorial of a Number</title>
+</head>
+
+<body>
+    <h1>
+        Factorial of a Number
+    </h1>
+   <script>
+  let n = parseInt(prompt("Enter a number to find its factorial:"));
+  let factorial = 1;
+
+  if (n < 0) {
+    alert("Factorial is not defined for negative numbers.");
+  } else {
+    for (let i = 1; i <= n; i++) {
+      factorial = factorial * i;
+    }
+    alert("The factorial of " + n + " is " + factorial);
+  }
+</script>
+
+</body>
+
+</html>

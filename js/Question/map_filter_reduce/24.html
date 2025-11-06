@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Prices [100,250,50,400,120]: filter >100, 10% discount, total.</h1>
+    <script>
+        const prices = [100,250,50,400,120];
+
+        // filter 
+        const Filter = prices.filter(num=> num>100);
+        console.log(`Filter: ${Filter}`);
+        // discount
+       const dis = Filter.map(price=>price - price*0.10);
+       console.log(`After Discount: ${dis}`);
+       // total
+       const total = dis.reduce((sum,num)=> sum+num,0);
+       console.log(`Total: ${total}`);
+
+    </script>
+</body>
+</html>

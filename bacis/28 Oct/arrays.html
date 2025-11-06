@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+</head>
+
+<body>
+    <h1>Storing multiple values in single variable</h1>
+    <script>
+        const array = [10, 20, 0.7, "hello", { id: 120, name: 'raj' }];
+        // // console.log(typeof(array));
+        // // console.log(array);
+
+        // // accessing array elements
+        // console.log(array[4]);
+        // console.log(array[12]); // underfined
+
+        // //length
+        // console.log("no of element in array: " ,array.length);
+
+
+        // //add, remove, update array
+
+        // // add
+        // array.push(200);
+        // console.log(array);
+        // // remove
+        // const removed = array.pop();
+        // console.log("after pop, array is ",array);
+
+        // // update
+        // array[1] = 550;
+        // console.log("Edited value",array);
+
+        // loop 
+        // using index within the loop
+        // array.length = 6, i=0....5
+
+        // for --- provides the index 
+        console.log("For");
+        for (let i = 0; i < array.length; i++) {
+            console.log(array[i]);
+
+        }
+
+        //for-in --- provides the index
+        console.log("For-in");
+        for (const index in array) {
+            console.log(array[index]);
+        }
+
+        //for-of --- provides the elements
+        console.log("For-of");
+
+        for (const element of array) {
+            console.log(element);
+        }
+
+
+    </script>
+</body>
+
+</html>

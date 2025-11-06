@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compound Interest</title>
+</head>
+<body>
+<h1>Compound Interest</h1>
+<script>
+    //formula: CI = p*(1+(r/n)**(n*t)
+    let p = parseFloat(prompt("enter the Princpal"));
+    let r = parseFloat(prompt("enter the Rate"));
+    let n = parseFloat(prompt("enter the Number"));
+    let t = parseFloat(prompt("enter the Year"));
+    let R = r/100;
+    let Amount =  p *[(1+R/n)**(n*t)];
+    alert("Compound Interest: "+ Amount);
+    alert(`P:${p} + "*" [(1 "+" (R:${R} "/" N:${n})"**"(N:${n}"*"T:${t})]` + "=" + Amount);
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const emp ={
+            id: 101,
+            name: "sumit",
+            dept: "IT",
+            work: function(){
+                console.log("employee is working");
+                console.log(this.name,"employee is working");
+                this.display(); // 'this' --> it represents the current object 
+            },
+            display(){
+                console.log("This is a display calling");
+                 
+            },
+            upgrade: (tech)=> console.log("upgraging to", tech)
+        }
+    console.log("Employee name :", emp.name);
+    emp.work();
+    emp.upgrade("AWS");
+
+
+    
+    </script>
+</body>
+</html>

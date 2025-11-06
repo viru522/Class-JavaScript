@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="header" >searching the elements </h1>
+    <h1 class="cls" >5 ways to access the HTML element through JS </h1>
+    <p class="cls" >get method - 3</p>
+    <p class="cls" >qeryselector - 2</p>
+    <input type="text" id="username" name="username">
+    <button onclick="btncheck()"> Submit</button>
+
+        <script>
+            /*
+            DOM manipulation:
+            1. accessing the elements
+            2. accessing the content
+            3. setting the content
+            */
+           
+
+            /* DOM MANIPULATION TOPIC
+            1. accessing element 
+            2. capture the content 
+            3. JS, set up the content 
+            4. adding the new element 
+            5. remove the element 
+            6. css manipulation
+            */
+
+            // accessing the HTML elements
+            const element = document.getElementById('header');
+            console.log(element);
+
+            // capturing the content of HTML element
+            const heading = element.innerHTML; 
+            console.log(heading);
+            
+            const heading2 = document.getElementById('header').innerHTML;
+            console.log(heading2);
+            
+            // collection method - return the collection of elemnts
+            // const allParagraphs = document.getElementsByTagName('p').innerHTML;
+            // console.log(allParagraphs);
+            const allParagraphs = document.getElementsByTagName('p');
+            for(let i = 0; i< allParagraphs.length; i++){
+                const e = allParagraphs[i];
+                console.log(e);
+                const contents = allParagraphs[i].innerHTML;
+                console.log(contents);
+            }
+            // 
+            const ElementsByClass = document.getElementsByClassName('cls');
+            // for-of
+            for (let element of ElementsByClass) {
+                 console.log(element);
+            }
+
+            // caputing input form text box 
+            function btncheck(){
+                // by id
+                const username = document.getElementById("username").value;
+                console.log(username);
+                // by name   
+                // const uname = document.username.value;
+                // console.log(uname);
+            }
+            
+        </script>
+</body>
+</html>

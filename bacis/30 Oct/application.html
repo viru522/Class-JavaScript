@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>
+        Application of arrow functions
+    </h3>
+    <p>Generally Arrow function </p>
+    <script>
+        // function demo(){
+        //     console.log("this the dome function");
+
+        // }
+        // function testing(fn){ // accepting function as parametr
+        //     console.log("test function is testing");
+        //     fn();
+        // }
+        // testing(demo);
+
+        // setTimeout Syntax 
+        // setTimeout(fn, delay_ms)
+        // calculates delay and after completion fn will be exceuted
+        // first 
+        //     function print(){
+        //         console.log("done-1");    
+        //     }    
+        //     setTimeout(print, 5000);
+
+        //     // second is in  array fn
+        //     const p = () =>  console.log("done-2");    
+
+        //     setTimeout(p,1000);
+        //    // thrid is in fn
+        //    setTimeout(()=>  console.log("done-3"), 2000 );
+
+        // filter / map / reduse
+        const data = [10, 40, 20, 50, 68, 213, 55];
+        // expected o/p, no above 20 --> [40,50,55,68,213]
+
+        // JS is defined filter (fn_returningBoolean)
+        function check(num) {
+            if (num > 20) return true;
+            else return false;
+        }
+        const above20 = data.filter(check);
+
+        console.log(above20);
+    //    using arrow function 
+        const chk = num => num > 20;
+        const above_20 = data.filter(chk);
+        console.log(above_20);
+    //   using predefine bulid method for filter
+      const Above20 = data.filter(num => num>20);
+      console.log(Above20);
+
+
+      
+    </script>
+</body>
+
+</html>

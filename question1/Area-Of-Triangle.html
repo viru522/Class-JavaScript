@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Area Of Triangle</title>
+</head>
+<body>
+   <h1>Area Of Triangle</h1>
+   <script>
+    let height = parseInt(prompt("Enter a height"));
+    let base = parseInt(prompt("Enter a base"));
+    
+     let Area = (1/2)* base * height ;
+
+     alert("Area of Triangle is "+ Area)
+   </script>
+<!-- 
+   <h1>Area of Triangle</h1>
+<script>
+    let height = parseFloat(prompt("Enter the height"));
+    let base = parseFloat(prompt("Enter the base"));
+
+    if (base > 0 && height > 0) {
+        let area = (1 / 2) * base * height;
+        alert("✅ Area of Triangle is " + area);
+    } else {
+        alert("⚠️ Please enter positive numbers for base and height.");
+    }
+</script> -->
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Area of Triangle Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f9fa;
+            text-align: center;
+            padding: 40px;
+        }
+        .box {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: inline-block;
+        }
+        input {
+            margin: 8px;
+            padding: 8px;
+            width: 120px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        h1 {
+            color: #333;
+        }
+        #result {
+            margin-top: 15px;
+            font-size: 18px;
+            color: #007bff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h1>Area of Triangle</h1>
+        <input type="number" id="base" placeholder="Enter Base">
+        <input type="number" id="height" placeholder="Enter Height">
+        <br>
+        <button onclick="calculateArea()">Calculate</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function calculateArea() {
+            let base = parseFloat(document.getElementById('base').value);
+            let height = parseFloat(document.getElementById('height').value);
+
+            if (base > 0 && height > 0) {
+                let area = (1 / 2) * base * height;
+                document.getElementById('result').innerHTML = 
+                    "✅ Area of Triangle is " + area.toFixed(2);
+            } else {
+                document.getElementById('result').innerHTML = 
+                    "⚠️ Please enter positive numbers for base and height.";
+            }
+        }
+    </script>
+
+</body>
+</html> -->

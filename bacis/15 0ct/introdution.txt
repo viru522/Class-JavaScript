@@ -1,0 +1,32 @@
+Way to run Js:
+==============
+1. adding to HTML
+2. Directly running JS (using NODE)
+
+Features
+ES-6 and ES-7
+1. Interperted language
+2. Every browser has its own JS engine 
+    -Interperter 
+3. OOP
+4. Dynamically typed 
+5. ES-6 Features
+6. Arrow function 
+
+
+
+rules 
+=====================
+space is not use 
+
+
+good practices:
+===========================
+ alpha $ digit _ only these allowed but cannt start with digit 
+ variable num shoulg be meaningfull
+
+
+case
+==================================
+ var dateofBrith; //camelCase
+ var date_of_Brith; //snakeCase

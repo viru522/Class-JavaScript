@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object</title>
+</head>
+<body>
+    <h1>Object In JS</h1>
+    <h1>Understanding JS objects</h1>
+    <h1>JSON: JS object notation</h1>
+    <script>
+      // object is defineed using key-value pairs
+      let student ={
+        id:101,
+        name:"virendra",
+        dob:"22 May 2001"
+      } 
+    //   console.log(typeof(student)); //object
+    //   console.log(student);
+    //   //accessing specific key-value 
+    //   //first
+    //   console.log(student.name);
+    //   //second 
+    //   //dynamic property syntax
+    //   console.log("ID: "+student['id']);
+      
+
+    //   second table 
+    // let emp ={
+    //     id: 1021,
+    //     name: "sahil",
+    //     salary: 20000,
+    //     type: "IT"
+    // }
+    //   console.log(emp);
+    //   console.log(emp.salary);
+      
+    //   // UNderstanding dynamic property syntax
+    //   let property = prompt("Enter the Property: id/name/dob");
+    //   console.log("entered property : "+ property);
+    //   console.log(emp[property],student[property]);
+      
+    //   // adding key-value pair in JSON
+    //   student['qualification']='B.com';
+    //   console.log(student);
+      
+      //editing the value
+    //   student.qualification = "It"
+    //   console.log(student)
+
+    //   //deleting the key-value pair
+    //   delete student.qualification;
+    //   console.log(student);
+      
+       // destructuring the object
+       // capturing the value of key in independent variables
+    //    let id = student.id;
+    //    let name = student.name;
+    //    let dob = student.dob;
+
+       // in single line 
+       // variable name must be same as keys
+       // const {key1, key2} = odject;
+    //    const { id, name, dob,san} = student;
+    //    console.log(dob); //  22 may 2001
+    //    console.log(id); // 101
+    //    console.log(san); // underfined
+       
+      // rest & spread ....
+      //... used on the left side of aassigment ===> rest operator
+    //   const { id, dob, ...person} = student;
+    //   console.log(person);
+      
+      // Reference of the object of the json data 
+    //   const stu1 = student;
+      // stu1 will be a reference of same object  
+    //   console.log(stu1);
+      // if we edited sum thing in stu1 the data will change also in student table.
+
+      //spread 
+      // const stu2 = {... object json table name }
+      const stu2 = {... student};
+      // spread is use make a copy of JSON table data
+
+    //   console.log(stu2);
+      stu2.id = 104;
+      console.log(stu2);
+      console.log(student);
+      
+      
+
+    </script>
+</body>
+</html>

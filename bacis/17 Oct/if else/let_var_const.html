@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let Var Const </title>
+</head>
+<body>
+    <h1>variable declaration Keywords: let, var, const </h1>
+   <p>Type of variables: <br>
+    Gobal (var) and Local-Block scoped <br>
+    var (let const) variables. <br>
+    let const ==> ES6
+ </p>
+    <script>
+        var num = 10;
+        if (num >= 0){
+            //error
+            // Uncaught ReferenceError: result is not defined
+            var result = "positive";
+            let ans = "its positive"; //block scoped CONSTANT
+            const PI = 3.14; //block scoped CONSTANT
+            //Uncaught TypeError: Assignment to constant variable
+            PI = 3.57; // not allowed, its a constant
+           //Uncaught SyntaxError: Missing initializer in const declaration 
+            // const inst; // declaration 
+            inst = " Itvedant"; // setting the value 
+            alert(result);
+        }
+        else{
+            alert("negative");
+        }
+       alert("the number is " + result);
+    </script>
+</body>
+</html>

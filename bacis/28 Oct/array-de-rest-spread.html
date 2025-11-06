@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays == Destructuring / Rest / Spread </title>
+
+
+</head>
+<body>
+<script>
+    const value = [12,34,89,"hello"];
+        // Destructuring Array
+      const [a,,,b] = value;
+      console.log(a);
+      console.log(b);
+      
+      //Rest
+      const [f,s, ...rest] = value;
+      console.log(rest); // [89, 'hello']
+      
+      const [v,i,r,u,... other] = value;
+      console.log(other); // [] null
+      
+      // Spread operator
+      const values = [...value];
+     console.log(values);
+
+     // merging arrays using spread
+     const arr1 = [12,34,10];
+     const arr2 = [100,304,34,10];
+     const arr3 = [...arr1, ...arr2];
+     console.log(arr3);
+     const arr4 = [90,50,...arr3, ...arr2];
+     console.log(arr4);
+     
+     
+
+     
+
+      
+ 
+</script>     
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>function types</title>
+</head>
+
+<body>
+    <h1>Types of function</h1>
+    <p>
+    <ul>
+        <li>
+            A void functions - they don't return any value   </li>
+             <li >Non void function : they will return some value </li>
+            <ul >
+                <li> Void, Non-parameterized
+                    <br> function getPi (){
+                    <br> return 22/7;
+                    <br>
+                }
+                <br>
+                const PI = getPi();
+                <br>
+                log(PI)
+                </li>
+                <li>non-vooid, parameterized</li>
+                <ol>
+                    <li> 
+                        function subtract(n1,n2){
+                            <br>
+                            return n1-n2;
+                            <br>
+                        } 
+                        <br>
+                        const diff = subtract(100,30);
+                    </li>
+                </ol>
+
+            </ul>
+          
+       
+
+    </ul>
+    </p>
+    <script>
+        let n1 =parseInt(prompt("Enter"));
+        let n2 =parseInt(prompt("Enter"));
+
+        // void function, non-parameterized
+        function hello() {
+            alert("Hello All")
+        }
+        hello();
+        // void function
+        function add(n1, n2) {
+            const ans = n1 + n2;
+            console.log("Addition: " + ans);
+        }
+        add();
+        add(n1,n2);
+        add(10);
+        add(10, 20);
+        add(10,"hi");
+        add("hi","hello");
+       
+
+
+    </script>
+</body>
+
+</html>

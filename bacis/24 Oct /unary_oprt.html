@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Operators</h1>
+    <ul>
+        <li>Unary Operators</li>
+        <li>Binary Operators</li>
+        <li>Tertiary / Ternary / Misc Operators</li>
+    </ul>
+    <script>
+        
+        // Unary operators: operate on single operands 
+        let num = 10;
+        num++; //num = num+1 (post increment)
+        console.log(num);
+        num--; // num = num-1 (post decrement)
+        console.log(num);
+        
+        ++num; //num = num+1(pre incr)
+        console.log(num);
+        --num; //num = num-1 (pre decr)
+        console.log(num);
+        
+        // Binary Operators: operate on two operands
+        // let ans = 10 * 20;
+        // // let div = n1 / n2;
+        // let result = n1 < n2;
+        // console.log(ans);
+        // console.log(div);
+        // console.log(result);
+        
+        //Tertiary / Ternary / Misc Operators
+
+        let num1 = parseInt(prompt("Enter a number"));
+        let num2 = parseInt(prompt("Enter a number"));
+        let largest;
+          if(num1>num2){
+            largest = num1;
+          }
+          else{
+            largest = num2;
+          }
+          console.log("largest on is " + largest);
+          // best way  
+        // result_var = (condition) ? true_answer : false_answer;
+           largest = (num1 > num2) ? num1 : num2;
+           console.log("largest on is " + largest);
+           
+         
+    </script>
+</body>
+</html>

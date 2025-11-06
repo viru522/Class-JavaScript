@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const data =[ 10, 20, 30, 40, 50];
+        //first
+        function res(num, total){
+            return num+ total;
+        }
+        const check = data.reduce(res);
+        console.log(check);
+        
+        //second --> this Arrow function 
+        const add = data.reduce((num,total) => num + total);
+        console.log(add);
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REDECLARATION & HOISTING</title>
+</head>
+
+<body>
+    <h1>RECLARATION & HOISTING</h1>
+    <script>
+        //Recclaration 
+        // var num = 100;
+        // alert("Square of num " + num ** 2);
+        // num = 50;
+        // var num = 50;
+
+        // let num1 = 100;
+        // alert("Square of num " + num ** 2);
+        // num1 = 50; // Uncaught SyntaxError: Identifier 'num1' has already been declared
+        // let num1 = 50; // errro, redeclaration not allowed
+
+        // HOISTING
+        // // var variables
+        // console.log(username);
+        // console.log(square);
+        // var username = "Rohit";
+        // var square = 100;
+        // // how dose the js converted code
+        // var username;
+        // var square;
+        // console.log(username);
+        // console.log(square);
+        // username = "Rohit";
+        // square = 100;
+
+
+        // let variables
+        // console.log(data); // Uncaught ReferenceError: data is not defined
+        // console.log(username);// Uncaught ReferenceError: Cannot access 'username' before initialization
+        // console.log(square);// Uncaught ReferenceError: Cannot access 'square' before initialization
+        // let username = "Rohit";
+        // let square = 100;
+         
+        // const variables
+        console.log(data); // Uncaught ReferenceError: data is not defined
+        console.log(username);// Uncaught ReferenceError: Cannot access 'username' before initialization
+        console.log(square);// Uncaught ReferenceError: Cannot access 'square' before initialization
+        const square = 100;
+        const username = "Rohit";
+
+
+    </script>
+
+</body>
+
+</html>

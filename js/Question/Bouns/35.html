@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>35. Function calculateTotal(items): reduce sum; if >500→High Value, else→Normal Order.</h1>
+    <script>
+        const items = [200,150,250,100,120,80];
+        function calculateTotal(items){
+            const total =items.reduce((sum,item)=> sum+item,0);
+            if(total> 500){
+                console.log("High Value");
+            }else{
+                console.log("Normal Order");
+            }
+        }
+        calculateTotal(items);
+    </script>
+</body>
+</html>

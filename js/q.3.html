@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const items = [250, 645, 300, 900, 50];
+
+        let i = 0;
+        for (const price of items) {
+            const offer = price / 10;
+            items[i] = price - offer;
+            i++;
+        }
+
+        console.log(items);
+
+    </script>
+</body>
+
+</html>

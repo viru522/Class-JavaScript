@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>5. Create a nested arrow function that checks if a number is positive; if yes → returns its square; else →
+        'Invalid'.</h1>
+    <script>
+        // function check(num) {
+        //     if(number>=0){
+        //         const sq = number**2;       
+        //       alert(`the ${number} is positive and the square is ${sq} `);
+        //     }else{
+        //         alert("Invalid");
+        //     }
+        // }
+        // check();
+
+        // const check = (num) =>{
+        //     const inner = (n) => (n >= 0 ? n ** 2 : "invaild")
+        //     return inner(num);
+        // };
+        // const number = parseInt(prompt("Enter"));
+        // const result = check(number);
+        // alert(result);
+
+        const check = (num) =>(n=> n>=0 ? n**2:"invaild")(num);
+        alert(check((prompt("Enter"))));
+    </script>
+</body>
+
+</html>

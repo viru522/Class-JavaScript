@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>11. Check if a number is positive, negative, or zero.</h1>
+    <script>
+        let num = Number(prompt("Enter"));
+        if (num > 0) console.log(num, ' is positive ');
+        else if (num < 0) console.log(num, 'is negative');
+        else if (num == 0) console.log(num, 'is zero');
+        else console.log('invalid');
+
+        // arrow function 
+        const checkNumber = (num) => {
+            if (num > 0) console.log(`${num} is positive`);
+            else if (num < 0) console.log(`${num} is negative`);
+            else if (num === 0) console.log(`${num} is zero`);
+            else console.log('Invalid');
+        };
+
+        checkNumber(Number(prompt("Enter a number:")));
+
+    </script>
+</body>
+
+</html>

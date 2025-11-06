@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Words ['apple','banana','cherry','date']: filter length>5, uppercase.</h1>
+    <script>
+        const words = ['apple','banana','cherry','date'];
+        // filter 
+        const filter = words.filter(words=> words.length>5);
+        console.log(filter);
+        // upper
+        const upper = filter.map(word => word.toUpperCase());
+        console.log(upper);
+    </script>
+</body>
+</html>

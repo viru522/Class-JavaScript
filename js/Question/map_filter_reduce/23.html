@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Marks [45,60,78,32,90]: filter >=40, add 5 bonus (map), total (reduce).</h1>
+    <script>
+        const Marks =[45,60,78,32,90];
+       //fiter
+        const chk = Marks.filter(num=>num>=40);
+        console.log(`Filter: ${chk}`);
+        //bouns
+         const check = chk.map(num=>num+5);
+         console.log(`BounsAdded: ${check}`);
+         // total
+         const chk1 =check.reduce((total,num)=>total+num,0);
+         console.log(`Total: ${chk1}`);
+         //Avg
+         const chk2 = chk1/check.length;
+         console.log(`Average: ${chk2}`);
+         
+
+    </script>
+</body>
+</html>

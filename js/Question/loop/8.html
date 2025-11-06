@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1> Use a for-in loop to print all keys and values of const user = { name: 'Raj', age: 22, city: 'Delhi' }.</h1>
+    <script>
+        const user = {
+            name: 'Raj',
+            age: 22,
+            city: 'Delhi'
+        };
+        
+        for( const i in user){
+            console.log(`${i}: ${user[i]}`);
+        }
+    </script>
+</body>
+
+</html>

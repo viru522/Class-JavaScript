@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body> <label for="num1">Number 1</label>
+    <input type="number" name="num1" class="input" id="num1">
+    <br>
+    <label for="num2">Number 2</label>
+    <input type="number" name="num2" class="input" id="num2">
+    <br>
+    <button type="button" onclick="btncheck()">Submit</button>
+    <br>
+    <label for="Total">Answer</label>
+    <input type="number" id="ans" class="input" placeholder="Answer">
+    <p id="Result"> </p>
+    <!-- <div class="newe1"> This is newElement</div> -->
+    <div id="parentdiv"> This is ParentDiv</div>
+
+    <script>
+        function btncheck() {
+            const num3 = Number(document.getElementById('num1').value);
+            const num4 = Number(document.getElementById('num2').value);
+            const check = num3 + num4;
+            document.getElementById('Result').textContent = `Sum: ${check}`;
+            document.getElementById('Result').style.color = "green";
+            // by querySelector
+            document.querySelector('#ans').value = check; // tagName
+            // adding a HTML element
+            // adding in body
+            const newe1 = document.createElement("h1");
+            newe1.innerHTML = 'This new element using createElment';
+            newe1.style.color ="red";
+
+            document.body.append(newe1); // adding at the end of body 
+            // adding with respect to existing div
+            const parentDiv = document.getElementById("parentdiv");
+            parentDiv.before(newe1);
+            // parentDiv.before(newe1);
+        } 
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Nesting object</h1>
+    <script>
+        const student = {
+            id:101,
+            name:"virendra",
+            branch: "comp",
+            marks:{
+                python:72,
+                sql:78,
+                java:79,
+            }
+        };
+        console.log(student);
+        console.log(student.marks);
+        console.log(student.marks.java);
+
+        // destructuring 
+        //  const {name, marks } = student;
+        //  console.log(`${name} got ${marks}`);
+
+         // destructuring in nesting 
+      const {name, marks:{java} } = student;
+      console.log(`${name} has scored ${java} in java`);
+      
+
+
+
+         
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate Tax On Salary</title>
+</head>
+<body>
+    <h1>Calculate Tax On Salary</h1>
+    <script>
+        let Salary = parseFloat(prompt("Enter the Salary"));
+        let tax = (18 / 100) * Salary;
+        let T = Salary - tax;
+        alert("The Salary is "+ Salary + " After The Tax deduction the remaining salary is " + T  );
+    </script>
+    <!-- <script>
+    let salary = parseFloat(prompt("Enter the Salary"));
+
+    // 18% tax
+    let tax = (18 / 100) * salary;
+
+    // Remaining salary after tax
+    let remainingSalary = salary - tax;
+
+    alert("The Salary is " + salary + 
+          ". After 18% tax deduction, the remaining salary is " + remainingSalary);
+</script> -->
+
+</body>
+</html>

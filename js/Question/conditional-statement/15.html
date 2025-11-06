@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <h1>15. Check if string starts with 'A' and ends with 'Z' using nested conditions.</h1>
+    <script>
+        const str = prompt("Enter some word");
+
+        if(str){
+            if (str[0]=='A'){
+                if (str[str.length-1].toLowerCase == 'Z') {
+                    console.log(`the word start 'A' and end with 'Z'`);
+                } else{
+                    console.log(`Starts with 'A' but does not end with 'Z'`);
+                }
+            }else{
+                console.log(`String does not start with 'A'`);
+            }
+        }else{
+            console.log(`Please enter a valid string!`);
+        }
+    </script>
+</body>
+</html>

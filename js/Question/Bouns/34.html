@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>users = [{name:'Raj',age:25},{name:'Amit',age:17},{name:'Priya',age:22}] → filter adults, map
+        names, print using for-of.</h1>
+    <script>
+        const users = [{ name: 'Raj', age: 25 },
+        { name: 'Amit', age: 17 },
+        { name: 'Priya', age: 22 }
+        ];
+        // Filter adults
+        const adults = users.filter(user => user.age >= 18);
+        // Map only names 
+        const names = adults.map(user => user.name);
+        // print names using for-of 
+        for (const name of names) {
+            console.log(name);
+        }
+    </script>
+</body>
+
+</html>

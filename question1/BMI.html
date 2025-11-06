@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI</title>
+</head>
+<body>
+    <h1>Calculate BMI</h1>
+    <script> 
+        let height = parseFloat(prompt("Enter The Height"));
+        let Weight = parseFloat(prompt("Enter The Weight"));
+        let bmi = Weight/height**2;
+
+        if (bmi < 18.5){
+            alert("BMI Of " + bmi + " UnderWeight");
+        }
+
+        else if(bmi <= 24.9){
+            alert("BMI Of " + bmi + " NormalWeight");
+        }
+        else if(bmi <= 29.9){
+            alert("BMI Of " + bmi + " OverWeight");
+        }
+        else{
+            alert("BMI Of " + bmi + " Obesity");
+        }
+    </script>
+</body>
+</html>

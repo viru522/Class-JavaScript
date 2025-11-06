@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Nested if: Age >= 18 and learner license = true → Eligible else Not Eligible.</h1>
+    <script>
+        const age = Number(prompt("Enter Age"))
+        const hasLearnerLicense = prompt("Do you have a learner license? (yes/no)").toLowerCase();
+
+        if (age >= 18) {
+            if (hasLearnerLicense === "yes") {
+                alert(" ELigible ");
+            }
+            else {
+                alert("Not Eligible - You need a learner license")
+            }
+        }
+        else {
+            alert("Not Eligible - Age must be 18 or above");
+        }
+    </script>
+</body>
+
+</html>
