@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function checkEven(num) {
+            return new Promise((resolve, reject) => {
+
+                console.log("checking if the even");
+                if (num % 2 == 0) {
+                    Promise(num + " is even");
+
+                } else {
+                    reject(num + " is not even");
+                }
+            });
+        }
+
+        checkEven(10)
+            .then(msg => {
+                console.log(msg);
+                return checkEven(17);
+            })
+            .then(msg => {
+                console.log(msg)
+                return checkEven(22);
+            })
+            .then(msg => {
+                console.log(msg)
+            })
+            .catch(err => console.error(err));
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //   const egg = new Promise((resolve, reject) =>{
+    //     // starts execution of this executor function imediately as soon as the promise is defined
+    //       console.log("executor function started execution");
+    //       resolve("Great!!! Its a chick !");
+    //       reject("Sorry!! its a broken egg");
+    //   });
+      // promise states/ stages - pending, resolved, rejected.
+
+      // we need to consume the promise, so that we know if its  resolved or rejected.
+
+    //   consuming the promise 
+    //  .then() handles the resolve, successul  execution
+    //  .catch() handles the reject failure  
+
+    // egg
+    //    .then(msg => console.log(msg))
+    //    .catch(err => console.log(err));
+
+
+function checkEven (num) {
+    return new Promise((resolve, reject) =>{
+
+        console.log("checking if the even");
+        if(num%2==0){
+            console.log(num+" is even");
+            
+        }else{
+            console.log(num+ " is not even");
+        } 
+    });
+    }
+
+    checkEven(1097)
+       .then(msg => console.log(msg))
+       .catch(err => console.error(err));
+       
+    </script>
+</body>
+</html>
