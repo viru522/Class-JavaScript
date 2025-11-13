@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+ <h1>43. setAttribute – change image src.</h1>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNVM0up8ea3YP6N4noLsfdHtZgOfwJ8WZlzA&s" 
+     alt="lion" id="myImage">
+
+<script>
+  function changeImageSrc(newSrc) {
+    const img = document.getElementById("myImage");
+    img.setAttribute("src", newSrc); // Correct attribute name and usage
+  }
+
+  changeImageSrc("https://i.pinimg.com/736x/b2/78/52/b27852c753923c5108251ccc3f565bc7.jpg");
+</script>
+
+</body>
+</html>

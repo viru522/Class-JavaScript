@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Currency Converter</title>
+  <style>
+    /* ===== Global Styles ===== */
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background-color: #0f172a;
+      color: #f8fafc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    /* ===== Form Container ===== */
+    form {
+      background: #1e293b;
+      padding: 2rem 2.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+      text-align: center;
+      width: 320px;
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+      color: #38bdf8;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin-top: 0.7rem;
+      font-weight: 500;
+      color: #e2e8f0;
+    }
+
+    select,
+    input {
+      width: 100%;
+      padding: 0.6rem;
+      margin-top: 0.4rem;
+      border: none;
+      border-radius: 0.5rem;
+      outline: none;
+      font-size: 1rem;
+      background: #334155;
+      color: #f1f5f9;
+      transition: all 0.2s ease-in-out;
+    }
+
+    select:focus,
+    input:focus {
+      background: #475569;
+      box-shadow: 0 0 0 2px #38bdf8;
+    }
+
+    button {
+      background: #38bdf8;
+      color: #0f172a;
+      font-weight: bold;
+      border: none;
+      border-radius: 0.5rem;
+      padding: 0.7rem 1.5rem;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    button:hover {
+      background: #0ea5e9;
+      transform: translateY(-2px);
+    }
+
+    .result {
+      margin-top: 1rem;
+      background: #334155;
+      padding: 0.8rem;
+      border-radius: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    #convertAmount {
+      color: #38bdf8;
+      font-weight: bold;
+    }
+
+    .loading {
+      margin-top: 0.6rem;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <form name="conversionform">
+    <h2>Currency Converter</h2>
+
+    <label for="formCurrency">From:</label>
+    <select name="formCurrency" id="formCurrency">
+      <option value="USD">USD — US Dollar</option>
+      <option value="EUR">EUR — Euro</option>
+      <option value="GBP">GBP — British Pound</option>
+      <option value="INR">INR — Indian Rupee</option>
+    </select>
+
+    <label for="toCurrency">To:</label>
+    <select name="toCurrency" id="toCurrency">
+      <option value="USD">USD — US Dollar</option>
+      <option value="EUR">EUR — Euro</option>
+      <option value="GBP">GBP — British Pound</option>
+      <option value="INR">INR — Indian Rupee</option>
+    </select>
+
+    <label for="entryValue">Amount:</label>
+    <input type="number" placeholder="Enter amount" name="amount" id="entryValue" min="0" step="any" />
+
+    <button type="submit" onclick="chk(event)">Convert</button>
+
+    <div class="result">
+      Converted Amount: <span id="convertAmount">0</span>
+    </div>
+    
+  </form>
+
+  <script>
+    function chk(event) {
+      event.preventDefault();
+
+      const conversion = +document.conversionform.amount.value;
+      const formCurrency = document.conversionform.formCurrency.value;
+      const toCurrency = document.conversionform.toCurrency.value;
+      const resultDiv = document.getElementById("convertAmount");
+
+     
+
+      fetch(`https://api.exchangerate-api.com/v4/latest/${formCurrency}`)
+        .then(response => response.json())
+        .then((data) => {
+          const rate = data.rates[toCurrency];
+          const convertedAmount = conversion * rate;
+          resultDiv.innerText = `${convertedAmount}  ${toCurrency}`;
+        })
+        .catch((error) => {
+          console.error("Error fetching exchange rates:", error);
+          resultDiv.innerText = "Error fetching data";
+        })
+        .finally(() => {
+          status.textContent = "Conversion completed.";
+          setTimeout(() => (status.textContent = ""), 2000);
+        });
+    }
+  </script>
+</body>
+</html>

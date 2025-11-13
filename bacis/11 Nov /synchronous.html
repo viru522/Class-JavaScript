@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Async Demo — Check Even</title>
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#111827;
+      --muted:#9CA3AF;
+      --accent:#10B981;
+      --glass: rgba(255,255,255,0.03);
+    }
+    *{box-sizing:border-box;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;}
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(180deg,var(--bg),#071022);
+      color:#E6EEF3;
+      padding:24px;
+    }
+
+    .app{
+      width:100%;
+      max-width:880px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+      padding:20px;
+      border:1px solid rgba(255,255,255,0.03);
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:12px;
+    }
+    header h1{
+      margin:0;
+      font-size:1.1rem;
+      letter-spacing:0.2px;
+    }
+    p.lead{margin:6px 0 16px;color:var(--muted);font-size:0.95rem}
+
+    .panel{
+      display:grid;
+      grid-template-columns:1fr 320px;
+      gap:16px;
+    }
+
+    .card{
+      background:var(--card);
+      padding:14px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.03);
+      min-height:160px;
+    }
+
+    .output {
+      background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(255,255,255,0.02));
+      padding:12px;
+      border-radius:8px;
+      height:240px;
+      overflow:auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+      font-size:0.92rem;
+      color:#D1FAE5;
+      border:1px solid rgba(255,255,255,0.03);
+    }
+
+    .meta { color:var(--muted); font-size:0.88rem; margin-top:8px; }
+
+    footer {
+      margin-top:16px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      color:var(--muted);
+      font-size:0.85rem;
+    }
+
+    .small{
+      font-size:0.78rem;
+      color:var(--muted);
+    }
+
+    @media (max-width:880px){
+      .panel{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app" role="main">
+    <header>
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden>
+        <rect x="1" y="1" width="22" height="22" rx="5" fill="#0ea5a9"></rect>
+        <path d="M7 12h10M7 8h10M7 16h6" stroke="#02111b" stroke-width="1.5" stroke-linecap="round"></path>
+      </svg>
+      <div>
+        <h1>Async Demo — checkEven</h1>
+        <p class="lead">Your JavaScript is embedded unchanged below. Open devtools (console) to see logs.</p>
+      </div>
+    </header>
+
+    <section class="panel">
+      <div class="card">
+        <h3 style="margin-top:0;margin-bottom:8px">About</h3>
+        <p class="meta">This page runs your <code>asynchronousDome()</code> function immediately (your script calls it). No JS modifications made.</p>
+
+        <div style="margin-top:12px">
+          <strong>What to expect:</strong>
+          <ul style="margin:8px 0 0 18px;color:var(--muted)">
+            <li>Console logs show progress (open DevTools → Console).</li>
+            <li>Because <code>checkEven(25)</code> rejects, the <code>try</code> block will throw there and the subsequent awaits won't run — handled by your <code>catch</code>.</li>
+          </ul>
+        </div>
+
+        <div class="meta small" style="margin-top:12px">
+          Tip: If you want visible output on the page instead of console-only, tell me and I’ll add a small logger div and the minimal glue code (won't change your logic).
+        </div>
+      </div>
+
+      <aside class="card">
+        <h4 style="margin:0 0 8px 0">Console snapshot</h4>
+        <div class="output" id="consoleOutput">
+          <!-- Note: your script writes to browser console. This area is left as-is (no JS capture). -->
+          Open the browser devtools Console to see:
+          <pre style="margin-top:8px;color:#A7F3D0">checking if the even
+10 is even
+checking if the even
+25 is not even
+Error fetching data: 25 is not even
+Fetch attempt finished.</pre>
+          (actual order matches runtime; since code uses <code>await</code>, it stops at the first rejection and jumps to catch.)
+        </div>
+      </aside>
+    </section>
+
+    <footer>
+      <div class="small">JS left unchanged — included at bottom of page.</div>
+      <div class="small">If you'd like I can add an on-page logger (no logic changes) or show how to continue after rejections.</div>
+    </footer>
+  </main>
+
+  <script>
+   async function asynchronousDome() {
+        function checkEven(num) {
+            return new Promise((resolve, reject) => {
+            console.log("checking if the even");
+            if (num % 2 == 0) {
+                resolve(num + " is even");
+            } else {
+                reject(num + " is not even");
+            }
+            });
+        }
+      try {
+       const resp1 = await checkEven(10);
+       console.log(resp1);
+       const resp2 = await checkEven(25);
+       console.log(resp2);
+       const resp3 = await checkEven(12);
+       console.log(resp3);
+       const resp4 = await checkEven(19);
+       console.log(resp4);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        console.log('Fetch attempt finished.');
+      }
+    }
+    asynchronousDome();
+  </script>
+</body>
+</html>

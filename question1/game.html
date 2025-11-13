@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Instant Quiz — Select Topic</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <style>
+    :root{--bg:#f6f8fb;--card:#fff;--muted:#57606a;--accent:#0d6efd;--success:#198754;--danger:#dc3545;}
+    body{background:var(--bg);color:var(--muted);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica Neue,Arial;}
+    .container-app{max-width:1000px;margin:28px auto;padding:18px;}
+    .panel{background:var(--card);border-radius:12px;padding:18px;box-shadow:0 10px 30px rgba(2,6,23,0.06);}
+    .opt-btn{width:100%;text-align:left;margin-bottom:10px;transition:transform .12s ease;}
+    .opt-btn:hover{transform:translateY(-3px);}
+    .opt-btn.correct{background:var(--success)!important;color:#fff;}
+    .opt-btn.wrong{background:var(--danger)!important;color:#fff;}
+    .progwrap{height:12px;background:rgba(0,0,0,0.06);border-radius:999px;overflow:hidden;}
+    .progbar{height:100%;width:0;background:linear-gradient(90deg,var(--accent),#60c6ff);transition:width .35s ease;}
+    .review-card{padding:12px;border-radius:10px;background:rgba(0,0,0,0.02);margin-bottom:12px;}
+  </style>
+</head>
+<body>
+<div class="container-app">
+  <div class="panel">
+    <h4>Instant Quiz — Choose Topics</h4>
+    <p class="small-muted">Select which subjects to include in your quiz.</p>
+
+    <div id="setup">
+      <div class="row g-3">
+        <div class="col-md-12">
+          <label class="form-label small-muted d-block mb-2">Choose Topics</label>
+          <div class="d-flex flex-wrap gap-3">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="chkHTML" checked>
+              <label class="form-check-label" for="chkHTML">HTML</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="chkCSS" checked>
+              <label class="form-check-label" for="chkCSS">CSS</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="chkBOOT" checked>
+              <label class="form-check-label" for="chkBOOT">Bootstrap</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="chkJS" checked>
+              <label class="form-check-label" for="chkJS">JavaScript</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label small-muted">Timer per question (0=off)</label>
+          <input id="timer" type="number" class="form-control" min="0" value="20"/>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label small-muted">Negative marking</label>
+          <div class="form-check form-switch">
+            <input id="neg" class="form-check-input" type="checkbox" checked/>
+            <label class="form-check-label small-muted" for="neg">-5 for wrong</label>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label small-muted">Total Questions</label>
+          <input id="totalQ" type="number" min="10" max="500" value="100" class="form-control"/>
+        </div>
+
+        <div class="col-md-12 d-flex align-items-end gap-2 mt-3">
+          <button id="startBtn" class="btn btn-primary">Start Game</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="quiz" style="display:none;margin-top:16px;">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <div><span class="badge bg-primary" id="qtopic">Topic</span> <span class="small-muted" id="qdifficulty">Level</span></div>
+        <div class="text-end"><div class="small-muted">Score</div><div id="score" style="font-weight:700;font-size:1.6rem;">0</div></div>
+      </div>
+      <div class="progwrap mb-3"><div id="progbar" class="progbar"></div></div>
+      <h5 id="qtext"></h5>
+      <div id="options" class="mt-3"></div>
+      <div class="d-flex justify-content-between align-items-center mt-3">
+        <div class="small-muted">Q <strong id="qnum">1</strong>/<strong id="qtot">100</strong></div>
+        <div><button id="skipBtn" class="btn btn-outline-secondary me-2">Skip</button><button id="nextBtn" class="btn btn-primary" disabled>Next</button></div>
+      </div>
+    </div>
+
+    <div id="result" style="display:none;margin-top:18px;">
+      <div class="text-center mb-3">
+        <h4>Quiz Complete</h4>
+        <div class="small-muted">Score: <span id="finalScore">0</span> • <span id="finalPercent">0%</span></div>
+        <button id="playAgain" class="btn btn-primary mt-3">Play Again</button>
+      </div>
+      <hr/>
+      <h5>Review</h5>
+      <div id="reviewList"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// === MCQ DATASETS ===
+
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+// --- HTML ---
+function genHtmlQA(){
+  const data=[
+    {q:'Which tag defines the largest heading?',opts:['<h1>','<h6>','<head>','<header>'],ans:'<h1>'},
+    {q:'Which attribute gives alternative text to an image?',opts:['alt','src','title','name'],ans:'alt'},
+    {q:'Which element creates a hyperlink?',opts:['<a>','<link>','<ref>','<url>'],ans:'<a>'},
+    {q:'Which element inserts a line break?',opts:['<br>','<lb>','<newline>','<break>'],ans:'<br>'},
+    {q:'Which tag is used for a table row?',opts:['<tr>','<td>','<th>','<table>'],ans:'<tr>'}
+  ];
+  const d=data[Math.floor(Math.random()*data.length)];
+  const opts=shuffle([...d.opts]);
+  return {topic:'HTML',difficulty:'Beginner',text:d.q,options:opts,correctIndex:opts.indexOf(d.ans)};
+}
+
+// --- CSS ---
+function genCssQA(){
+  const data=[
+    {q:'Which property changes text color?',opts:['color','font-color','text-color','fgcolor'],ans:'color'},
+    {q:'Which property controls layout type?',opts:['display','position','float','layout'],ans:'display'},
+    {q:'Which property sets line spacing?',opts:['line-height','word-spacing','margin','padding'],ans:'line-height'},
+    {q:'Which selector targets elements by class?',opts:['.class','#class','*class','class()'],ans:'.class'},
+    {q:'Which property adds shadow to text?',opts:['text-shadow','box-shadow','font-shadow','shadow'],ans:'text-shadow'}
+  ];
+  const d=data[Math.floor(Math.random()*data.length)];
+  const opts=shuffle([...d.opts]);
+  return {topic:'CSS',difficulty:'Beginner',text:d.q,options:opts,correctIndex:opts.indexOf(d.ans)};
+}
+
+// --- BOOTSTRAP ---
+function genBsQA(){
+  const data=[
+    {q:'Which Bootstrap class makes an image responsive?',opts:['.img-fluid','.img-responsive','.fluid','.img-fit'],ans:'.img-fluid'},
+    {q:'Which class provides a fixed-width container?',opts:['.container','.container-fluid','.container-lg','.wrap'],ans:'.container'},
+    {q:'Which component creates a navigation bar?',opts:['.navbar','.nav','.menu','.header'],ans:'.navbar'},
+    {q:'Which class adds top margin (space)?',opts:['mt-3','m-top','margin-top-3','space-t3'],ans:'mt-3'},
+    {q:'Which class makes text center-aligned?',opts:['text-center','align-center','center','txt-center'],ans:'text-center'}
+  ];
+  const d=data[Math.floor(Math.random()*data.length)];
+  const opts=shuffle([...d.opts]);
+  return {topic:'Bootstrap',difficulty:'Beginner',text:d.q,options:opts,correctIndex:opts.indexOf(d.ans)};
+}
+
+// --- JAVASCRIPT ---
+function genJsQA(){
+  const data=[
+    {q:'Which keyword declares a constant?',opts:['const','let','var','static'],ans:'const'},
+    {q:'Which method converts JSON string to object?',opts:['JSON.parse()','JSON.stringify()','parseJSON()','JSON.toObj()'],ans:'JSON.parse()'},
+    {q:'Which method adds element to end of array?',opts:['push()','pop()','shift()','unshift()'],ans:'push()'},
+    {q:'Which symbol denotes strict equality?',opts:['===','==','=','=>'],ans:'==='},
+    {q:'Which function is used to print output to console?',opts:['console.log()','log.console()','print()','alert()'],ans:'console.log()'}
+  ];
+  const d=data[Math.floor(Math.random()*data.length)];
+  const opts=shuffle([...d.opts]);
+  return {topic:'JavaScript',difficulty:'Beginner',text:d.q,options:opts,correctIndex:opts.indexOf(d.ans)};
+}
+
+// Map
+const POOLS = {
+  HTML: genHtmlQA,
+  CSS: genCssQA,
+  BOOTSTRAP: genBsQA,
+  JAVASCRIPT: genJsQA
+};
+
+// === GAME LOGIC ===
+let current=[],index=0,score=0,answers=[],totalQuestions=100;
+let config={timer:20,negative:true};
+
+function startGame(){
+  // Selected topics
+  const topics=[];
+  if(document.getElementById('chkHTML').checked) topics.push('HTML');
+  if(document.getElementById('chkCSS').checked) topics.push('CSS');
+  if(document.getElementById('chkBOOT').checked) topics.push('BOOTSTRAP');
+  if(document.getElementById('chkJS').checked) topics.push('JAVASCRIPT');
+
+  if(topics.length===0){alert('Select at least one topic.');return;}
+
+  totalQuestions=parseInt(document.getElementById('totalQ').value)||100;
+  config.timer=parseInt(document.getElementById('timer').value)||0;
+  config.negative=document.getElementById('neg').checked;
+
+  // Generate questions
+  current=[];
+  for(let i=0;i<totalQuestions;i++){
+    const topic=topics[Math.floor(Math.random()*topics.length)];
+    current.push(POOLS[topic]());
+  }
+
+  index=0;score=0;answers=[];
+  document.getElementById('score').textContent=score;
+  document.getElementById('qtot').textContent=totalQuestions;
+  document.getElementById('setup').style.display='none';
+  document.getElementById('quiz').style.display='block';
+  loadQuestion();
+}
+
+function loadQuestion(){
+  if(index>=current.length){finishGame();return;}
+  const q=current[index];
+  document.getElementById('qtopic').textContent=q.topic;
+  document.getElementById('qdifficulty').textContent=q.difficulty;
+  document.getElementById('qnum').textContent=index+1;
+  document.getElementById('qtext').innerHTML=q.text;
+  const opt=document.getElementById('options');opt.innerHTML='';
+  q.options.forEach((op,i)=>{
+    const b=document.createElement('button');
+    b.className='btn btn-outline-primary opt-btn';
+    b.innerHTML=op;
+    b.onclick=()=>selectAnswer(b,i);
+    opt.appendChild(b);
+  });
+  document.getElementById('progbar').style.width=Math.round((index/totalQuestions)*100)+'%';
+}
+
+function selectAnswer(btn,i){
+  const q=current[index];
+  const btns=document.querySelectorAll('.opt-btn');
+  btns.forEach(b=>b.disabled=true);
+  document.getElementById('nextBtn').disabled=false;
+  document.getElementById('skipBtn').disabled=true;
+  if(i===q.correctIndex){btn.classList.add('correct');score+=10;answers.push({q,status:'correct'});}
+  else{btn.classList.add('wrong');btns[q.correctIndex].classList.add('correct');if(config.negative)score-=5;answers.push({q,status:'wrong'});}
+  if(score<0)score=0;
+  document.getElementById('score').textContent=score;
+}
+
+document.getElementById('nextBtn').onclick=()=>{index++;loadQuestion();document.getElementById('nextBtn').disabled=true;document.getElementById('skipBtn').disabled=false;};
+document.getElementById('skipBtn').onclick=()=>{index++;loadQuestion();};
+
+function finishGame(){
+  document.getElementById('quiz').style.display='none';
+  document.getElementById('result').style.display='block';
+  document.getElementById('finalScore').textContent=score;
+  const percent=Math.round((score/(totalQuestions*10))*100);
+  document.getElementById('finalPercent').textContent=percent+'%';
+  const list=document.getElementById('reviewList');
+  list.innerHTML='';
+  answers.forEach((a,i)=>{
+    list.innerHTML+=`
+      <div class='review-card'>
+        <strong>Q${i+1}:</strong> ${a.q.text}<br>
+        <strong>Your:</strong> ${a.status==='correct'?'✅ Correct':'❌ Wrong'}<br>
+        <small>Correct: ${a.q.options[a.q.correctIndex]}</small>
+      </div>`;
+  });
+}
+
+document.getElementById('playAgain').onclick=()=>{document.getElementById('result').style.display='none';document.getElementById('setup').style.display='block';};
+document.getElementById('startBtn').onclick=startGame;
+</script>
+</body>
+</html>
